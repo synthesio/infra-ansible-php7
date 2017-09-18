@@ -1,0 +1,15 @@
+---
+php_version: 7.0
+php_sapi_name: "php{{ php_version }}-fpm"
+php_packages:
+  - common
+  - cli
+  - intl
+  - curl
+  - cgi
+  - fpm
+  - mysql
+  - gd
+  - mcrypt
+  - mbstring
+  - bcmath

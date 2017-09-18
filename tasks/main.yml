@@ -1,0 +1,18 @@
+---
+- name: Add repository for Debian 
+  apt_repository: repo="deb http://packages.dotdeb.org {{ ansible_distribution_release }} all" state=present
+
+- name: Add apt key for Debian
+  apt_key: url=https://www.dotdeb.org/dotdeb.gpg state=present
+
+- name: Install PHP Packages
+  apt: pkg=php{{ php_version }}-{{ item }} state=latest
+  with_items: "{{ php_packages }}"
+  when: php_packages is defined
+  notify:
+    - restart {{ php_sapi_name }}
+
+- name: Install apache2 module
+  apt: pkg=libapache2-mod-php{{php_version }} state=latest
+  when: '"apache" in php_sapi_name'
+

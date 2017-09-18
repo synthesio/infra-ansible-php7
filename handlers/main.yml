@@ -1,0 +1,4 @@
+---
+- name: restart php sapi 
+  service: name={{ php_sapi_name }} enabled=yes state=restarted
+  when: php_sapi_name != 'cli'
