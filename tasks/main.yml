@@ -1,4 +1,9 @@
 ---
+- name: Add gpg key for dotdeb
+  apt_key:
+    url: https://www.dotdeb.org/dotdeb.gpg
+    state: present
+
 - name: Add repository for Debian 
   apt_repository: repo="deb http://packages.dotdeb.org {{ ansible_distribution_release }} all" state=present
 
